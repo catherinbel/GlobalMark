@@ -1,0 +1,16 @@
+[
+  {
+    "symbol": "USDRUB",
+    "bid": 66.8318,
+    "ask": 66.8436,
+    "price": 66.8377,
+    "timestamp": 1541749517
+  },
+  {
+    "symbol": "USDEUR",
+    "bid": 0.881819,
+    "ask": 0.881819,
+    "price": 0.881819,
+    "timestamp": 1541749517
+  }
+]
