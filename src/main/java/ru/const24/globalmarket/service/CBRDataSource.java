@@ -11,9 +11,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CBRDataSource implements CurrencyDataSource {
-    public static final String API_URL = ("http://www.cbr.ru/scripts/XML_daily.asp?date_req=15/11/2018");
+    public static final String API_URL = ("http://www.cbr.ru/scripts/XML_daily.asp?date_req=");
 
     @Override
     public CurrencyNominal getCurrencyNominalByDate(LocalDate date) throws Exception {
@@ -24,9 +25,13 @@ public class CBRDataSource implements CurrencyDataSource {
         double unitEUR = 0;
         double unitRUB = 0;
 
-        String xmlStringResponse = Unirest.get(API_URL).asString().getBody();
-//        System.out.println(xmlStringResponse);
+        LocalDate localDate = LocalDate.now();
+//преобразование даты в строку
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedString = localDate.format(formatter);
 
+        String xmlStringResponse = Unirest.get(API_URL + formattedString).asString().getBody();
+//        System.out.println(xmlStringResponse);
 
 // Создаем DocumentBuilder
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
